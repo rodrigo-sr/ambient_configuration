@@ -1176,19 +1176,12 @@ def main():
         install_extra_dev_tools(distro)
         setup_git_config()
         
-        # Data Science & Analytics Stack
+        # Data Science & Analytics Stack (minimal)
         install_anaconda()
         install_data_science_stack()
-        install_jupyter_ecosystem()
-        configure_jupyter_settings()
-        install_deep_learning_frameworks()
-        install_data_visualization_tools(distro)
-        install_mlops_tools()
+        install_data_engineering_tools()
         install_r_environment(distro)
         install_database_tools(distro)
-        install_data_engineering_tools()
-        install_nlp_tools()
-        install_computer_vision_tools()
         
         # Optional: Node.js for web dashboards
         install_nodejs(distro)
