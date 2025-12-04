@@ -15,25 +15,14 @@ This Python script automates the complete setup of a fresh Linux installation fo
 ### Data Science Stack
 - **Core Libraries**: NumPy, Pandas, Polars, SciPy, PyArrow
 - **Machine Learning**: Scikit-learn, XGBoost, LightGBM, CatBoost, StatsModels
-- **Deep Learning**: TensorFlow, PyTorch (GPU auto-detected), Keras, Transformers
-- **Visualization**: Matplotlib, Seaborn, Plotly, Altair, Bokeh
-- **Dashboards/Apps**: Streamlit, Dash, Gradio, Panel, Voila
+- **Visualization**: Matplotlib, Seaborn, Plotly, Altair
+- **Data Processing**: DuckDB, FastParquet, OpenPyXL
 
-### Jupyter Ecosystem
-- **JupyterLab** with extensions (Git, LSP, widgets)
-- **Jupyter Notebook** with optimal configuration
-- **R kernel** for Jupyter
-- Configured for large datasets (high rate limits)
-
-### NLP & Computer Vision
-- **NLP**: SpaCy, NLTK, Gensim, Sentence-Transformers, LangChain
-- **Vision**: OpenCV, scikit-image, Albumentations, YOLOv8, Detectron2
-
-### MLOps & Data Engineering
-- **Experiment Tracking**: MLflow, Weights & Biases, DVC
+### Data Engineering
+- **Big Data**: PySpark, Delta-Spark, Apache Kafka
 - **Orchestration**: Apache Airflow, Prefect, Dagster
-- **Data Validation**: Great Expectations, Evidently
-- **Big Data**: PySpark, DuckDB, Apache Kafka
+- **Cloud Storage**: boto3, google-cloud-storage, azure-storage-blob, MinIO
+- **Task Queues**: Celery, Redis
 
 ### Databases
 - **PostgreSQL**, **MySQL**, **MongoDB** (local installations)
@@ -124,13 +113,9 @@ sudo python3 setup_dev_environment.py
    pip install pandas numpy scikit-learn matplotlib
    ```
 
-6. **Test GPU access** for deep learning:
+6. **Test PySpark**:
    ```bash
-   # PyTorch
-   python -c "import torch; print('CUDA available:', torch.cuda.is_available())"
-   
-   # TensorFlow
-   python -c "import tensorflow as tf; print('GPUs:', tf.config.list_physical_devices('GPU'))"
+   python -c "from pyspark.sql import SparkSession; spark = SparkSession.builder.getOrCreate(); print('Spark version:', spark.version)"
    ```
 
 7. **Steam Setup** (for gaming):
@@ -143,7 +128,6 @@ sudo python3 setup_dev_environment.py
 
 | File | Purpose |
 |------|---------|
-| `~/.jupyter/jupyter_lab_config.py` | JupyterLab settings |
 | `~/miniconda3/` | Miniconda installation |
 | `~/.config/MangoHud/MangoHud.conf` | MangoHud overlay settings |
 | `~/.config/nvidia/gaming-config.sh` | NVIDIA gaming optimizations |
@@ -153,9 +137,6 @@ sudo python3 setup_dev_environment.py
 ## Quick Commands Cheat Sheet
 
 ```bash
-# Start Jupyter Lab
-jupyter lab
-
 # Create new conda environment
 conda create -n myenv python=3.11
 conda activate myenv
@@ -163,11 +144,11 @@ conda activate myenv
 # Install packages in environment
 pip install pandas numpy scikit-learn
 
-# Start Streamlit app
-streamlit run app.py
+# Start PySpark shell
+pyspark
 
-# Start MLflow UI
-mlflow ui
+# Start Airflow
+airflow standalone
 
 # Check GPU status
 nvidia-smi
@@ -181,10 +162,9 @@ watch -n 1 nvidia-smi
 You can modify the script to customize:
 
 - **Data Science packages**: Edit `install_data_science_stack()`
-- **Deep Learning frameworks**: Edit `install_deep_learning_frameworks()`
-- **NLP tools**: Edit `install_nlp_tools()`
-- **MLOps tools**: Edit `install_mlops_tools()`
-- **Jupyter settings**: Edit `configure_jupyter_settings()`
+- **Data Engineering tools**: Edit `install_data_engineering_tools()`
+- **R packages**: Edit `install_r_environment()`
+- **Database tools**: Edit `install_database_tools()`
 - **MangoHud**: Edit `~/.config/MangoHud/MangoHud.conf` after installation
 
 ## Troubleshooting
@@ -199,21 +179,6 @@ nvidia-smi
 
 # Check CUDA version
 nvcc --version
-
-# Test PyTorch CUDA
-python -c "import torch; print(torch.cuda.get_device_name(0))"
-```
-
-### Jupyter Issues
-```bash
-# Reset Jupyter config
-jupyter lab --generate-config
-
-# List available kernels
-jupyter kernelspec list
-
-# Install Python kernel
-python -m ipykernel install --user --name myenv
 ```
 
 ### Conda Issues
